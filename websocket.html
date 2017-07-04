@@ -5,7 +5,8 @@
     </head>
     <body>
         <script>
-            var ws = new WebSocket('wss://' + document.domain + ':' + location.port + '/feed');
+            var protocol = window.location.protocol == "https:" ? "wss" : "ws";
+            var ws = new WebSocket(protocol + '://' + document.domain + ':' + location.port + '/feed');
             ws.onmessage = function (event) {
                 var data = JSON.parse(event.data);
                 var messages = document.getElementsByTagName('ul')[0];
