@@ -5,7 +5,7 @@
     </head>
     <body>
         <script>
-            var ws = new WebSocket('wss://' + document.domain + ':' + location.port + '/feed');
+            var ws = new WebSocket('ws://' + document.domain + ':' + location.port + '/feed');
             ws.onmessage = function (event) {
                 var data = JSON.parse(event.data);
                 var messages = document.getElementsByTagName('ul')[0];
@@ -14,9 +14,9 @@
                     messages.removeChild(messages.lastChild);
                 }
 
-                for(var i=0;i<data.user_agents.length;i++){
+                for (var p in data.user_agents){
                     var message = document.createElement('li');
-                    var content = document.createTextNode(data.user_agents[i]);
+                    var content = document.createTextNode(data.user_agents[p] + " : " + p);
                     message.appendChild(content);
                     messages.appendChild(message);
                 }
