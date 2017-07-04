@@ -31,7 +31,7 @@ async def feed(request, ws):
                 "user_agents": user_agents,
                 "websockets": len(connected),
             }))
-            await asyncio.sleep(1)
+            await asyncio.sleep(.1)
     finally:
         connected.remove(ws)
         user_agents[user_agent] -= 1
